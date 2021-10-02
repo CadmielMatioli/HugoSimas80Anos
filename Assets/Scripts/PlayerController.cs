@@ -48,18 +48,19 @@ public class PlayerController : MonoBehaviour {
 
 			//Audio do pulo
 			audio.PlayOneShot (soundJump);
-			audio.volume = 1;
+			audio.volume = 0.15f;
 
 			if (slide == true) {
 				colisor.position = new Vector3 (colisor.position.x, colisor.position.y + 0.87f, colisor.position.z);	
 				slide = false;	
 			}
 		}
+		
 		if(Input.GetButtonDown("Slide") && grounded == true && slide == false){
 
 			//Audio do slide 
 			audio.PlayOneShot (soundSlide);
-			audio.volume = 0.5f;
+			audio.volume = 0.15f;
 
 			//colisor
 			colisor.position = new Vector3 (colisor.position.x, colisor.position.y - 0.87f, colisor.position.z);
@@ -74,12 +75,11 @@ public class PlayerController : MonoBehaviour {
 				slide = false;
 			}
 		}
-
-
 		Anime.SetBool ("jump", !grounded);
 		Anime.SetBool ("slide", slide);
 
 	}
+
 	void OnTriggerEnter2D(){
 		PlayerPrefs.SetInt ("pontuacao", pontuacao);
 		if (pontuacao > PlayerPrefs.GetInt ("recorde")) {
